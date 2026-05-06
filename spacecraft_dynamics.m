@@ -1,4 +1,4 @@
-function dXdt = spacecraft_dynamics(t, X, I, rho, v_orb, Cd, geom)
+function dXdt = spacecraft_dynamics(t, X, I, rho, v_orb, Cd, geom, Kp, Kd)
     % state variables
     q = X(1:4);
     q = q / norm(q);
@@ -37,6 +37,10 @@ function dXdt = spacecraft_dynamics(t, X, I, rho, v_orb, Cd, geom)
         end
     end
 
-    dw = I \ (tau_aero - cross(w, I * w));
+    % control torque
+    q_err = X(2:4); 
+    tau_ctrl = -Kp * q_err - Kd * X(5:7);
+
+    dw = I \ (tau_aero + tau_ctrl - cross(w, I * w));
     dXdt = [dq; dw];
 end
