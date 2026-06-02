@@ -47,11 +47,11 @@ Instead of manual gain scheduling, the project uses Bayesian Optimization to fin
 The algorithm treats the cost function as a Gaussian Process (GP). For a set of tested gains $\mathbf{X}$ and results $\mathbf{y}$, the predicted mean $\mu$ and uncertainty $\sigma^2$ at a new point $\mathbf{x}_*$ are:
 
 $$
-\mu(\mathbf{x}_*) = \mathbf{k}_*^T (\mathbf{K} + \sigma_n^2 \mathbf{I})^{-1} \mathbf{y}
+\mu(\mathbf{x}_{*}) = \mathbf{k}_{*}^{T} (\mathbf{K} + \sigma_{n}^{2} \mathbf{I})^{-1} \mathbf{y}
 $$
 
 $$
-\sigma^2(\mathbf{x}_*) = k(\mathbf{x}_*, \mathbf{x}_*) - \mathbf{k}_*^T (\mathbf{K} + \sigma_n^2 \mathbf{I})^{-1} \mathbf{k}_*
+\sigma^{2}(\mathbf{x}_{\ast}) = k(\mathbf{x}_{\ast}, \mathbf{x}_{\ast}) - \mathbf{k}_{\ast}^{T} (\mathbf{K} + \sigma_{n}^{2} \mathbf{I})^{-1} \mathbf{k}_{\ast}
 $$
 
 The **Kernel Function** $k(\mathbf{x}, \mathbf{x}')$ (typically Squared Exponential) defines how the "influence" of a test point spreads through the search space.
